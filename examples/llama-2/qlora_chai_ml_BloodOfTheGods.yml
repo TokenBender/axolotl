@@ -1,5 +1,5 @@
-base_model: meta-llama/Llama-2-7b-hf
-base_model_config: meta-llama/Llama-2-7b-hf
+base_model: khoantap/mythical-wizard-rp
+base_model_config: khoantap/mythical-wizard-rp
 model_type: LlamaForCausalLM
 tokenizer_type: LlamaTokenizer
 is_llama_derived_model: true
@@ -9,7 +9,7 @@ load_in_4bit: true
 strict: false
 
 datasets:
-  - path: mhenrichsen/alpaca_2k_test
+  - path: TokenBender/roleplay_instructions_alpaca
     type: alpaca
 dataset_prepared_path: last_run_prepared
 val_set_size: 0.01
@@ -18,7 +18,7 @@ output_dir: ./qlora-out
 adapter: qlora
 lora_model_dir:
 
-sequence_len: 4096
+sequence_len: 2048
 sample_packing: true
 pad_to_sequence_len: true
 
@@ -29,10 +29,10 @@ lora_target_modules:
 lora_target_linear: true
 lora_fan_in_fan_out:
 
-wandb_project:
-wandb_entity:
+wandb_project: BloodOfTheGods_13B_qlora
+wandb_entity: ahm-rimer
 wandb_watch:
-wandb_run_id:
+wandb_run_id: axolotl_v1
 wandb_log_model:
 
 gradient_accumulation_steps: 4
@@ -56,8 +56,8 @@ logging_steps: 1
 xformers_attention:
 flash_attention: true
 
-warmup_steps: 10
-eval_steps: 20
+warmup_steps: 5
+eval_steps: 10
 save_steps:
 debug:
 deepspeed:
