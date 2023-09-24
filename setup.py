@@ -13,7 +13,12 @@ def parse_requirements():
                 # Handle custom index URLs
                 _, url = line.split()
                 _dependency_links.append(url)
-            elif "flash-attn" not in line and line and line[0] != "#":
+            elif (
+                "flash-attn" not in line
+                and "deepspeed" not in line
+                and line
+                and line[0] != "#"
+            ):
                 # Handle standard packages
                 _install_requires.append(line)
     return _install_requires, _dependency_links
@@ -24,8 +29,9 @@ install_requires, dependency_links = parse_requirements()
 
 setup(
     name="axolotl",
-    version="0.1",
-    description="You know you're going to axolotl questions",
+    version="0.3.0",
+    description="LLM Trainer",
+    long_description="Axolotl is a tool designed to streamline the fine-tuning of various AI models, offering support for multiple configurations and architectures.",
     package_dir={"": "src"},
     packages=find_packages(),
     install_requires=install_requires,
@@ -34,7 +40,7 @@ setup(
         "flash-attn": [
             "flash-attn>=2.2.1",
         ],
-        "extras": [
+        "deepspeed": [
             "deepspeed",
         ],
     },
